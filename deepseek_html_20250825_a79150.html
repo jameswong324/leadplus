@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>利必达国际物流 - 中澳贸易全链路服务领航者</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #003a70;
+            --secondary: #ffb81c;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #f5f7fa;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .logo-text {
+            margin-left: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--secondary);
+            background-color: rgba(0, 58, 112, 0.1);
+        }
+        
+        .cta-button {
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #e6a500;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        /* 主视觉区域 */
+        .hero {
+            background: linear-gradient(rgba(0, 58, 112, 0.8), rgba(0, 58, 112, 0.8)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* 服务区域 */
+        .services {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            background-color: var(--primary);
+            color: white;
+            font-size: 2rem;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-content h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        /* 数据统计区域 */
+        .stats {
+            padding: 80px 0;
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            cursor: pointer;
+            padding: 20px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        
+        .stat-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-item h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        /* 服务行业区域 */
+        .industries {
+            padding: 80px 0;
+        }
+        
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .industry-item {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .industry-item:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        /* 全球仓储区域 */
+        .warehouses {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .warehouse-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .warehouse-table th, .warehouse-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .warehouse-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .warehouse-table tr {
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        
+        .warehouse-table tr:hover {
+            background-color: rgba(0, 58, 112, 0.05);
+        }
+        
+        .warehouse-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* 合作伙伴区域 */
+        .partners {
+            padding: 80px 0;
+        }
+        
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .partner-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .partner-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* 行动号召区域 */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1518458028785-8fbcd101ebb9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+            background-color: rgba(255, 184, 28, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #ddd;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .warehouse-table {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* 模拟页面内容 */
+        .page-content {
+            display: none;
+            padding: 40px 0;
+            min-height: 50vh;
+        }
+        
+        .page-content h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .page-content.active {
+            display: block;
+        }
+        
+        /* 预览提示 */
+        .preview-notice {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <!-- 预览提示 -->
+    <div class="preview-notice">
+        <i class="fas fa-mouse-pointer"></i> 可点击预览 - 所有链接均可交互
+    </div>
+
+    <!-- 头部 -->
+    <header>
+        <div class="container header-container">
+            <div class="logo" onclick="showPage('home')">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjUwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0ZXh0IHg9IjEwIiB5PSIzMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzAwM2E3MCI+TEVBRFBMVVM8L3RleHQ+PC9zdmc+" alt="利必达物流标志">
+                <div class="logo-text">利必达国际物流</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active" onclick="showPage('home'); return false;">首页</a></li>
+                    <li><a href="#" onclick="showPage('about'); return false;">关于我们</a></li>
+                    <li><a href="#" onclick="showPage('services'); return false;">服务项目</a></li>
+                    <li><a href="#" onclick="showPage('industries'); return false;">行业解决方案</a></li>
+                    <li><a href="#" onclick="showPage('network'); return false;">全球网络</a></li>
+                    <li><a href="#" onclick="showPage('contact'); return false;">联系我们</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="cta-button" onclick="showPage('quote'); return false;">获取报价</a>
+        </div>
+    </header>
+
+    <!-- 首页内容 -->
+    <div id="home" class="page-content active">
+        <!-- 主视觉区域 -->
+        <section class="hero">
+            <div class="container">
+                <h1>中澳贸易全链路服务领航者</h1>
+                <p>广东省利必达国际物流有限公司成立于2013年，是中国商务部首批授予一级国际货运代理资质的企业，深耕中澳经贸走廊12年</p>
+                <a href="#" class="cta-button" onclick="showPage('services'); return false;">探索我们的服务</a>
+            </div>
+        </section>
+
+        <!-- 服务区域 -->
+        <section class="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>我们的服务</h2>
+                    <p>为客户提供全方位的物流解决方案</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card" onclick="showPage('ocean-freight')">
+                        <div class="service-icon">
+                            <i class="fas fa-ship"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>海运专线</h3>
+                            <p>中澳快线7天直达，每周5班固定班轮，提供整柜和拼箱服务，专业化集装箱解决方案。</p>
+                            <ul>
+                                <li>中澳快线：7天直达悉尼/墨尔本</li>
+                                <li>整柜与拼箱服务</li>
+                                <li>特种柜：超长柜、开顶柜、框架柜、冷藏柜</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="service-card" onclick="showPage('air-freight')">
+                        <div class="service-icon">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>空运专线</h3>
+                            <p>中澳快线5-8工作日门到门，每日航班，优先清关，提供特殊货物处理能力。</p>
+                            <ul>
+                                <li>中澳航线5-8工作日门到门</li>
+                                <li>带电产品、化妆品专项运输</li>
+                                <li>医药冷链专业运输</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="service-card" onclick="showPage('warehousing')">
+                        <div class="service-icon">
+                            <i class="fas fa-warehouse"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>全球仓储</h3>
+                            <p>智能仓储网络覆盖中国、澳大利亚、美国和欧洲，提供AGV机器人分拣和恒温存储。</p>
+                            <ul>
+                                <li>中国深圳/广州智能仓库</li>
+                                <li>澳大利亚悉尼/墨尔本/布里斯班仓库</li>
+                                <li>美国洛杉矶和德国汉堡仓库</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 数据统计区域 -->
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item" onclick="showPage('achievements')">
+                        <h3>15%</h3>
+                        <p>中澳航线集装箱量市场占比</p>
+                    </div>
+                    <div class="stat-item" onclick="showPage('clients')">
+                        <h3>300+</h3>
+                        <p>服务知名企业客户</p>
+                    </div>
+                    <div class="stat-item" onclick="showPage('experience')">
+                        <h3>12</h3>
+                        <p>年中澳物流经验</p>
+                    </div>
+                    <div class="stat-item" onclick="showPage('global')">
+                        <h3>60+</h3>
+                        <p>月全球班次</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 服务行业区域 -->
+        <section class="industries">
+            <div class="container">
+                <div class="section-title">
+                    <h2>服务行业</h2>
+                    <p>为各行业提供专业物流解决方案</p>
+                </div>
+                <div class="industries-grid">
+                    <div class="industry-item" onclick="showPage('furniture')">家居家具</div>
+                    <div class="industry-item" onclick="showPage('electronics')">家电数码</div>
+                    <div class="industry-item" onclick="showPage('food')">食品饮料</div>
+                    <div class="industry-item" onclick="showPage('medical')">医疗用品</div>
+                    <div class="industry-item" onclick="showPage('auto')">汽车配件</div>
+                    <div class="industry-item" onclick="showPage('machinery')">机械设备</div>
+                    <div class="industry-item" onclick="showPage('textile')">纺织服装</div>
+                    <div class="industry-item" onclick="showPage('sports')">运动器材</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 全球仓储区域 -->
+        <section class="warehouses">
+            <div class="container">
+                <div class="section-title">
+                    <h2>全球仓储布局</h2>
+                    <p>智能仓储网络保障全球物流效率</p>
+                </div>
+                <table class="warehouse-table">
+                    <thead>
+                        <tr>
+                            <th>仓库地点</th>
+                            <th>面积</th>
+                            <th>特色功能</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr onclick="showPage('shenzhen-warehouse')">
+                            <td>中国深圳</td>
+                            <td>1.3万㎡</td>
+                            <td>AGV机器人分拣，恒温存储</td>
+                        </tr>
+                        <tr onclick="showPage('guangzhou-warehouse')">
+                            <td>中国广州</td>
+                            <td>1.8万㎡</td>
+                            <td>AGV机器人分拣，恒温存储</td>
+                        </tr>
+                        <tr onclick="showPage('sydney-warehouse')">
+                            <td>澳大利亚悉尼</td>
+                            <td>3.5万㎡</td>
+                            <td>AGV机器人分拣，恒温存储</td>
+                        </tr>
+                        <tr onclick="showPage('melbourne-warehouse')">
+                            <td>澳大利亚墨尔本</td>
+                            <td>2.8万㎡</td>
+                            <td>跨境电商专用，48小时全澳达</td>
+                        </tr>
+                        <tr onclick="showPage('brisbane-warehouse')">
+                            <td>澳大利亚布里斯班</td>
+                            <td>1.2万㎡</td>
+                            <td>家居家装产品专业仓</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 合作伙伴区域 -->
+        <section class="partners">
+            <div class="container">
+                <div class="section-title">
+                    <h2>战略合作伙伴</h2>
+                    <p>与全球知名品牌建立长期合作关系</p>
+                </div>
+                <div class="partners-grid">
+                    <div class="partner-item" onclick="showPage('huawei')">华为技术（澳洲）</div>
+                    <div class="partner-item" onclick="showPage('swisse')">Swisse维生素</div>
+                    <div class="partner-item" onclick="showPage('haier')">海尔集团</div>
+                    <div class="partner-item" onclick="showPage('midea')">美的电器</div>
+                    <div class="partner-item" onclick="showPage('geli')">格力空调</div>
+                    <div class="partner-item" onclick="showPage('lenovo')">联想集团</div>
+                    <div class="partner-item" onclick="showPage('xiaomi')">小米科技</div>
+                    <div class="partner-item" onclick="showPage('cofco')">中粮集团</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 行动号召区域 -->
+        <section class="cta">
+            <div class="container">
+                <h2>准备好优化您的中澳物流链了吗？</h2>
+                <p>立即联系我们，获取定制化物流解决方案</p>
+                <a href="#" class="cta-button" onclick="showPage('contact'); return false;">联系我们</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- 关于我们页面 -->
+    <div id="about" class="page-content">
+        <div class="container">
+            <h2>关于利必达国际物流</h2>
+            <p>广东省利必达国际物流有限公司成立于2013年，是中国商务部首批授予一级国际货运代理资质的企业。作为澳大利亚贸易委员会（Austrade）在华物流类战略合作伙伴，利必达深耕中澳经贸走廊12年，创新打造"物流+贸易"双轮驱动的全链路服务体系。</p>
+            <p>公司年操作中澳航线集装箱量占该通道总货量的15%，服务客户包括华为澳洲、Swisse维生素等300余家知名企业，并获评WCA全球货运联盟核心成员、ISO9001:2015认证等权威资质。</p>
+            <p><a href="#" class="cta-button" onclick="showPage('home'); return false;">返回首页</a></p>
+        </div>
+    </div>
+
+    <!-- 服务项目页面 -->
+    <div id="services" class="page-content">
+        <div class="container">
+            <h2>我们的服务项目</h2>
+            <p>利必达提供全方位的国际物流服务，包括海运、空运、仓储和贸易解决方案。</p>
+            <p><a href="#" class="cta-button" onclick="showPage('home'); return false;">返回首页</a></p>
+        </div>
+    </div>
+
+    <!-- 其他页面内容类似，这里省略详细代码 -->
+    <div id="industries" class="page-content">
+        <div class="container">
+            <h2>行业解决方案</h2>
+            <p>我们为各行业提供专业的物流解决方案。</p>
+            <p><a href="#" class="cta-button" onclick="showPage('home'); return false;">返回首页</a></p>
+        </div>
+    </div>
+
+    <div id="network" class="page-content">
+        <div class="container">
+            <h2>全球网络</h2>
+            <p>我们在全球拥有广泛的物流网络。</p>
+            <p><a href="#" class="cta-button" onclick="showPage('home'); return false;">返回首页</a></p>
+        </div>
+    </div>
+
+    <div id="contact" class="page-content">
+        <div class="container">
+            <h2>联系我们</h2>
+            <p>欢迎联系利必达国际物流，我们将为您提供专业的物流咨询服务。</p>
+            <p><a href="#" class="cta-button" onclick="showPage('home'); return false;">返回首页</a></p>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>利必达国际物流</h3>
+                    <p>中澳贸易全链路服务领航者，自2013年起为客户提供专业物流解决方案。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>服务项目</h3>
+                    <ul>
+                        <li><a href="#" onclick="showPage('ocean-freight'); return false;">海运专线</a></li>
+                        <li><a href="#" onclick="showPage('air-freight'); return false;">空运专线</a></li>
+                        <li><a href="#" onclick="showPage('warehousing'); return false;">全球仓储</a></li>
+                        <li><a href="#" onclick="showPage('customs'); return false;">清关服务</a></li>
+                        <li><a href="#" onclick="showPage('trade-solutions'); return false;">贸易解决方案</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>全球网点</h3>
+                    <ul>
+                        <li><a href="#" onclick="showPage('china-office'); return false;">中国总部</a></li>
+                        <li><a href="#" onclick="showPage('australia-office'); return false;">澳大利亚分公司</a></li>
+                        <li><a href="#" onclick="showPage('hongkong-office'); return false;">香港分公司</a></li>
+                        <li><a href="#" onclick="showPage('global-network'); return false;">全球网络</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>联系我们</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +86 XXX XXXX XXXX</li>
+                        <li><i class="fas fa-envelope"></i> info@leadpluslogistics.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 广东省佛山市</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 广东省利必达国际物流有限公司 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 页面切换功能
+        function showPage(pageId) {
+            // 隐藏所有页面
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // 显示选中的页面
+            document.getElementById(pageId).classList.add('active');
+            
+            // 滚动到顶部
+            window.scrollTo(0, 0);
+            
+            // 更新导航菜单活动状态
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // 如果是首页，设置首页链接为活动状态
+            if (pageId === 'home') {
+                document.querySelector('nav a').classList.add('active');
+            }
+        }
+        
+        // 为所有可点击元素添加视觉反馈
+        document.querySelectorAll('[onclick]').forEach(element => {
+            element.style.cursor = 'pointer';
+        });
+    </script>
+</body>
+</html>
