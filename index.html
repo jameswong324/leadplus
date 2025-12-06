@@ -1,798 +1,621 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="scroll-smooth antialiased">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>利必达国际物流 - 中澳贸易全链路服务领航者</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #003a70;
-            --secondary: #ffb81c;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
         body {
-            color: var(--dark);
-            line-height: 1.6;
-            background-color: #f5f7fa;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        
+        .fade-in { animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
+        .ping-slow { animation: ping 3s cubic-bezier(0, 0, 0.2, 1) infinite; }
         
-        /* 头部样式 */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-        
-        .logo img {
-            height: 50px;
-        }
-        
-        .logo-text {
-            margin-left: 10px;
-            font-size: 20px;
-            font-weight: bold;
-            color: var(--primary);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 25px;
-        }
-        
-        nav ul li a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-        
-        nav ul li a:hover, nav ul li a.active {
-            color: var(--secondary);
-            background-color: rgba(0, 58, 112, 0.1);
-        }
-        
-        .cta-button {
-            background-color: var(--secondary);
-            color: var(--primary);
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-        
-        .cta-button:hover {
-            background-color: #e6a500;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-        }
-        
-        /* 主视觉区域 */
-        .hero {
-            background: linear-gradient(rgba(0, 58, 112, 0.8), rgba(0, 58, 112, 0.8)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 100px 0;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        
-        /* 服务区域 */
-        .services {
-            padding: 80px 0;
-            background-color: var(--light);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--primary);
-        }
-        
-        .section-title h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            cursor: pointer;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .service-icon {
-            background-color: var(--primary);
-            color: white;
-            font-size: 2rem;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .service-content {
-            padding: 20px;
-        }
-        
-        .service-content h3 {
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        /* 数据统计区域 */
-        .stats {
-            padding: 80px 0;
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            text-align: center;
-        }
-        
-        .stat-item {
-            cursor: pointer;
-            padding: 20px;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-        }
-        
-        .stat-item:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .stat-item h3 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: var(--secondary);
-        }
-        
-        /* 服务行业区域 */
-        .industries {
-            padding: 80px 0;
-        }
-        
-        .industries-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .industry-item {
-            background-color: var(--light);
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-        
-        .industry-item:hover {
-            background-color: var(--primary);
-            color: white;
-            transform: scale(1.05);
-        }
-        
-        /* 全球仓储区域 */
-        .warehouses {
-            padding: 80px 0;
-            background-color: var(--light);
-        }
-        
-        .warehouse-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .warehouse-table th, .warehouse-table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .warehouse-table th {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .warehouse-table tr {
-            transition: background-color 0.3s;
-            cursor: pointer;
-        }
-        
-        .warehouse-table tr:hover {
-            background-color: rgba(0, 58, 112, 0.05);
-        }
-        
-        .warehouse-table tr:last-child td {
-            border-bottom: none;
-        }
-        
-        /* 合作伙伴区域 */
-        .partners {
-            padding: 80px 0;
-        }
-        
-        .partners-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .partner-item {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-        
-        .partner-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        /* 行动号召区域 */
-        .cta {
-            padding: 80px 0;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1518458028785-8fbcd101ebb9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-        }
-        
-        /* 页脚 */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 50px 0 20px;
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-column h3 {
-            color: var(--secondary);
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-column ul li a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s;
-            display: block;
-            padding: 5px 0;
-        }
-        
-        .footer-column ul li a:hover {
-            color: var(--secondary);
-            padding-left: 5px;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .social-links a:hover {
-            color: var(--secondary);
-            background-color: rgba(255, 184, 28, 0.2);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #ddd;
-            font-size: 0.9rem;
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-            }
-            
-            nav ul {
-                margin-top: 20px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            nav ul li {
-                margin: 5px 10px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .warehouse-table {
-                font-size: 0.9rem;
-            }
-        }
-        
-        /* 模拟页面内容 */
-        .page-content {
-            display: none;
-            padding: 40px 0;
-            min-height: 50vh;
-        }
-        
-        .page-content h2 {
-            color: var(--primary);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .page-content.active {
-            display: block;
-        }
-        
-        /* 预览提示 */
-        .preview-notice {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--secondary);
-            color: var(--primary);
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-weight: bold;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 1000;
-        }
+        /* Table Styles */
+        .data-table th { background-color: #f1f5f9; color: #1e3a8a; font-weight: 600; }
+        .data-table tr:nth-child(even) { background-color: #f8fafc; }
+        .data-table td { border-bottom: 1px solid #e2e8f0; }
     </style>
 </head>
-<body>
-    <!-- 预览提示 -->
-    <div class="preview-notice">
-        <i class="fas fa-mouse-pointer"></i> 可点击预览 - 所有链接均可交互
-    </div>
+<body class="bg-slate-50 text-slate-600 font-sans selection:bg-blue-100 selection:text-blue-900 relative">
 
-    <!-- 头部 -->
-    <header>
-        <div class="container header-container">
-            <div class="logo" onclick="showPage('home')">
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjUwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0ZXh0IHg9IjEwIiB5PSIzMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzAwM2E3MCI+TEVBRFBMVVM8L3RleHQ+PC9zdmc+" alt="利必达物流标志">
-                <div class="logo-text">利必达国际物流</div>
+    <header id="main-header" class="fixed top-0 w-full z-50 text-white transition-all duration-300 bg-transparent border-b border-white/10 backdrop-blur-[2px]">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+            <div class="flex flex-col leading-none cursor-pointer group" onclick="navigate('home')">
+                <span class="font-bold text-2xl tracking-tighter text-white group-hover:text-blue-200 transition-colors">LIBERATE</span>
+                <span class="text-[10px] tracking-[0.2em] uppercase text-white/70">Global Logistics</span>
+                <span class="text-[10px] text-white/70">利必达</span>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#" class="active" onclick="showPage('home'); return false;">首页</a></li>
-                    <li><a href="#" onclick="showPage('about'); return false;">关于我们</a></li>
-                    <li><a href="#" onclick="showPage('services'); return false;">服务项目</a></li>
-                    <li><a href="#" onclick="showPage('industries'); return false;">行业解决方案</a></li>
-                    <li><a href="#" onclick="showPage('network'); return false;">全球网络</a></li>
-                    <li><a href="#" onclick="showPage('contact'); return false;">联系我们</a></li>
-                </ul>
+
+            <nav class="hidden md:flex items-center gap-8">
+                <button onclick="navigate('home')" class="text-sm font-medium hover:text-blue-200 transition-colors border-b-2 border-transparent hover:border-blue-200 pb-1">首页</button>
+                <button onclick="navigate('about')" class="text-sm font-medium hover:text-blue-200 transition-colors border-b-2 border-transparent hover:border-blue-200 pb-1">关于我们</button>
+                <button onclick="navigate('sea')" class="text-sm font-medium hover:text-blue-200 transition-colors border-b-2 border-transparent hover:border-blue-200 pb-1">海运专线</button>
+                <button onclick="navigate('air')" class="text-sm font-medium hover:text-blue-200 transition-colors border-b-2 border-transparent hover:border-blue-200 pb-1">空运专线</button>
+                <button onclick="navigate('contact')" class="text-sm font-medium hover:text-blue-200 transition-colors border-b-2 border-transparent hover:border-blue-200 pb-1">联系我们</button>
             </nav>
-            <a href="#" class="cta-button" onclick="showPage('quote'); return false;">获取报价</a>
+
+            <button onclick="navigate('contact')" class="hidden md:flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white hover:text-[#2E5090] text-white text-xs font-semibold px-5 py-2.5 rounded-full transition-all duration-300 shadow-sm hover:shadow-md">
+                <span>获取报价</span>
+            </button>
+
+             <button onclick="toggleMobileMenu()" class="md:hidden text-white hover:text-blue-200 transition-colors">
+                <i data-lucide="menu" stroke-width="1.5" class="w-8 h-8"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden absolute top-24 left-0 w-full bg-[#2E5090] border-t border-white/10 shadow-2xl p-6 flex-col gap-4 md:hidden">
+            <button onclick="navigate('home')" class="text-left text-white py-2 border-b border-white/10">首页</button>
+            <button onclick="navigate('about')" class="text-left text-white py-2 border-b border-white/10">关于我们</button>
+            <button onclick="navigate('sea')" class="text-left text-white py-2 border-b border-white/10">海运专线</button>
+            <button onclick="navigate('air')" class="text-left text-white py-2 border-b border-white/10">空运专线</button>
+            <button onclick="navigate('contact')" class="text-left text-white py-2">联系我们</button>
         </div>
     </header>
 
-    <!-- 首页内容 -->
-    <div id="home" class="page-content active">
-        <!-- 主视觉区域 -->
-        <section class="hero">
-            <div class="container">
-                <h1>中澳贸易全链路服务领航者</h1>
-                <p>广东省利必达国际物流有限公司成立于2013年，是中国商务部首批授予一级国际货运代理资质的企业，深耕中澳经贸走廊12年</p>
-                <a href="#" class="cta-button" onclick="showPage('services'); return false;">探索我们的服务</a>
+    <main id="main-content">
+        
+        <section id="home-hero" class="relative h-[90vh] min-h-[700px] overflow-hidden fade-in">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center transition-transform duration-[10s] hover:scale-105"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-[#0f172a]/90 via-[#1e3a8a]/60 to-transparent"></div>
+            
+            <div class="relative max-w-7xl mx-auto px-6 h-full flex flex-col justify-center pt-20">
+                <div class="max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-200 text-xs font-medium mb-6 backdrop-blur-sm">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                        </span>
+                        Leader in Full-Chain Logistics
+                    </div>
+                    
+                    <h1 class="text-white text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.1]">
+                        China-Australia<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">Trade Services</span>
+                    </h1>
+                    
+                    <div class="space-y-4 mb-10">
+                        <h3 class="text-white/90 text-2xl md:text-3xl font-bold tracking-tight border-l-4 border-[#3b82f6] pl-4">
+                            中澳贸易全链路<br>服务领航者
+                        </h3>
+                    </div>
+
+                    <div class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-xl max-w-lg mb-10 hover:bg-white/10 transition-colors">
+                        <p class="text-blue-50/90 text-sm leading-relaxed font-light">
+                            广东省利必达国际物流有限公司成立于2013年，是中国商务部首批授予一级国际货运代理资质的企业，深耕中澳经贸走廊12年。
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="navigate('sea')" class="bg-[#3b82f6] hover:bg-[#2563eb] text-white px-8 py-4 rounded-full font-semibold text-sm transition-all shadow-lg shadow-blue-500/30 flex items-center justify-center gap-2 group">
+                            <span>探索我们的服务</span>
+                            <i data-lucide="arrow-right" stroke-width="2" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                        <button onclick="navigate('contact')" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-full font-semibold text-sm transition-all flex items-center justify-center backdrop-blur-sm">
+                            联系咨询
+                        </button>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- 服务区域 -->
-        <section class="services">
-            <div class="container">
-                <div class="section-title">
-                    <h2>我们的服务</h2>
-                    <p>为客户提供全方位的物流解决方案</p>
-                </div>
-                <div class="services-grid">
-                    <div class="service-card" onclick="showPage('ocean-freight')">
-                        <div class="service-icon">
-                            <i class="fas fa-ship"></i>
+        <div id="landing-content">
+            
+            <section class="py-24 bg-white relative z-10">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="flex justify-between items-end mb-16">
+                        <div>
+                            <h2 class="text-[#1e3a8a] text-4xl font-bold tracking-tight mb-2">Core Services<br>Overview</h2>
+                            <p class="text-slate-400 font-medium">核心服务总览</p>
                         </div>
-                        <div class="service-content">
-                            <h3>海运专线</h3>
-                            <p>中澳快线7天直达，每周5班固定班轮，提供整柜和拼箱服务，专业化集装箱解决方案。</p>
-                            <ul>
-                                <li>中澳快线：7天直达悉尼/墨尔本</li>
-                                <li>整柜与拼箱服务</li>
-                                <li>特种柜：超长柜、开顶柜、框架柜、冷藏柜</li>
-                            </ul>
+                        <button onclick="navigate('sea')" class="hidden md:flex items-center gap-2 text-[#1e3a8a] font-semibold hover:text-blue-600 transition-colors">
+                            查看全部服务 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                        <div onclick="navigate('air')" class="lg:col-span-5 group cursor-pointer h-full">
+                            <div class="bg-slate-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-100 h-full flex flex-col relative">
+                                <div class="h-64 lg:h-80 overflow-hidden relative">
+                                    <img src="https://images.unsplash.com/photo-1528123962883-c40a5d1c5f30?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Air Freight" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/80 to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+                                    <div class="absolute bottom-6 left-6 text-white">
+                                        <i data-lucide="plane" class="w-8 h-8 mb-2"></i>
+                                        <p class="font-bold text-lg">快速空运通道</p>
+                                    </div>
+                                </div>
+                                <div class="p-8 flex-1 flex flex-col bg-white">
+                                    <h3 class="text-xl font-bold text-[#1e3a8a] mb-4 group-hover:text-blue-600 transition-colors">企业跨境物流</h3>
+                                    <p class="text-sm text-slate-500 leading-relaxed mb-6">
+                                        专业B2B解决方案，中澳航线5-8工作日门到门。
+                                    </p>
+                                    <div class="mt-auto pt-6 border-t border-slate-100 flex items-center justify-between text-[#1e3a8a] text-sm font-medium">
+                                        <span>了解更多</span>
+                                        <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-7 flex flex-col gap-8">
+                            <div onclick="navigate('sea')" class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-100 group cursor-pointer">
+                                <div class="grid grid-cols-1 md:grid-cols-2 h-full">
+                                    <div class="h-64 md:h-auto overflow-hidden relative">
+                                        <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Sea Freight" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                        <div class="absolute inset-0 bg-blue-900/10 group-hover:bg-blue-900/0 transition-colors"></div>
+                                    </div>
+                                    <div class="p-8 flex flex-col justify-center">
+                                        <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mb-4 text-[#1e3a8a]">
+                                            <i data-lucide="anchor" class="w-5 h-5"></i>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-[#1e3a8a] mb-3">中澳双向全链路服务</h3>
+                                        <p class="text-sm text-slate-500 leading-relaxed mb-6">
+                                            海运中澳快线7天直达，中美航线12天到港。
+                                        </p>
+                                        <ul class="space-y-2">
+                                            <li class="flex items-center gap-2 text-xs text-slate-600"><i data-lucide="check-circle-2" class="w-3 h-3 text-blue-500"></i> 物流服务体系</li>
+                                            <li class="flex items-center gap-2 text-xs text-slate-600"><i data-lucide="check-circle-2" class="w-3 h-3 text-blue-500"></i> 垂直行业方案</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div onclick="navigate('about')" class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-100 group cursor-pointer flex-1">
+                                <div class="grid grid-cols-1 md:grid-cols-2 h-full">
+                                     <div class="h-64 md:h-auto overflow-hidden relative md:order-2">
+                                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Warehouse" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                    </div>
+                                    <div class="p-8 flex flex-col justify-center md:order-1">
+                                        <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mb-4 text-[#1e3a8a]">
+                                            <i data-lucide="package" class="w-5 h-5"></i>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-[#1e3a8a] mb-3">全球智能仓储</h3>
+                                        <p class="text-sm text-slate-500 leading-relaxed mb-6">
+                                            悉尼3.5万㎡、墨尔本2.8万㎡智能仓储，AGV机器人分拣。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="service-card" onclick="showPage('air-freight')">
-                        <div class="service-icon">
-                            <i class="fas fa-plane"></i>
+                </div>
+            </section>
+
+            <section class="py-16 bg-[#1e3a8a]">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-white">
+                        <div class="text-center group">
+                            <span class="block text-4xl md:text-5xl font-bold mb-2 group-hover:scale-110 transition-transform">15%</span>
+                            <span class="text-xs text-blue-200 uppercase tracking-widest">中澳航线市场占比</span>
                         </div>
-                        <div class="service-content">
-                            <h3>空运专线</h3>
-                            <p>中澳快线5-8工作日门到门，每日航班，优先清关，提供特殊货物处理能力。</p>
-                            <ul>
-                                <li>中澳航线5-8工作日门到门</li>
-                                <li>带电产品、化妆品专项运输</li>
-                                <li>医药冷链专业运输</li>
-                            </ul>
+                        <div class="text-center group">
+                            <span class="block text-4xl md:text-5xl font-bold mb-2 group-hover:scale-110 transition-transform">300+</span>
+                            <span class="text-xs text-blue-200 uppercase tracking-widest">服务知名企业</span>
                         </div>
-                    </div>
-                    <div class="service-card" onclick="showPage('warehousing')">
-                        <div class="service-icon">
-                            <i class="fas fa-warehouse"></i>
+                        <div class="text-center group">
+                            <span class="block text-4xl md:text-5xl font-bold mb-2 group-hover:scale-110 transition-transform">12</span>
+                            <span class="text-xs text-blue-200 uppercase tracking-widest">年专注中澳物流</span>
                         </div>
-                        <div class="service-content">
-                            <h3>全球仓储</h3>
-                            <p>智能仓储网络覆盖中国、澳大利亚、美国和欧洲，提供AGV机器人分拣和恒温存储。</p>
-                            <ul>
-                                <li>中国深圳/广州智能仓库</li>
-                                <li>澳大利亚悉尼/墨尔本/布里斯班仓库</li>
-                                <li>美国洛杉矶和德国汉堡仓库</li>
-                            </ul>
+                        <div class="text-center group">
+                            <span class="block text-4xl md:text-5xl font-bold mb-2 group-hover:scale-110 transition-transform">60+</span>
+                            <span class="text-xs text-blue-200 uppercase tracking-widest">月全球班次</span>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- 数据统计区域 -->
-        <section class="stats">
-            <div class="container">
-                <div class="stats-grid">
-                    <div class="stat-item" onclick="showPage('achievements')">
-                        <h3>15%</h3>
-                        <p>中澳航线集装箱量市场占比</p>
-                    </div>
-                    <div class="stat-item" onclick="showPage('clients')">
-                        <h3>300+</h3>
-                        <p>服务知名企业客户</p>
-                    </div>
-                    <div class="stat-item" onclick="showPage('experience')">
-                        <h3>12</h3>
-                        <p>年中澳物流经验</p>
-                    </div>
-                    <div class="stat-item" onclick="showPage('global')">
-                        <h3>60+</h3>
-                        <p>月全球班次</p>
+            <section class="relative py-28 overflow-hidden bg-slate-900">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1559297434-fae8a1916a79?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center opacity-30"></div>
+                
+                <div class="relative max-w-7xl mx-auto px-6 text-center">
+                    <h2 class="text-3xl font-bold text-white mb-2">客户证言与合作伙伴</h2>
+                    <p class="text-blue-400 text-xs tracking-wider uppercase mb-12">Strategic Partners</p>
+
+                    <div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+                        <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-full py-3 px-6 text-sm text-white hover:bg-white hover:text-[#1e3a8a] transition-all cursor-default">华为技术 (澳洲)</div>
+                        <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-full py-3 px-6 text-sm text-white hover:bg-white hover:text-[#1e3a8a] transition-all cursor-default">Swisse维生素</div>
+                        <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-full py-3 px-6 text-sm text-white hover:bg-white hover:text-[#1e3a8a] transition-all cursor-default">海尔集团</div>
+                        <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-full py-3 px-6 text-sm text-white hover:bg-white hover:text-[#1e3a8a] transition-all cursor-default">美的电器</div>
+                        <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-full py-3 px-6 text-sm text-white hover:bg-white hover:text-[#1e3a8a] transition-all cursor-default">格力空调</div>
+                        <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-full py-3 px-6 text-sm text-white hover:bg-white hover:text-[#1e3a8a] transition-all cursor-default">联想集团</div>
+                        <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-full py-3 px-6 text-sm text-white hover:bg-white hover:text-[#1e3a8a] transition-all cursor-default">小米科技</div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- 服务行业区域 -->
-        <section class="industries">
-            <div class="container">
-                <div class="section-title">
-                    <h2>服务行业</h2>
-                    <p>为各行业提供专业物流解决方案</p>
-                </div>
-                <div class="industries-grid">
-                    <div class="industry-item" onclick="showPage('furniture')">家居家具</div>
-                    <div class="industry-item" onclick="showPage('electronics')">家电数码</div>
-                    <div class="industry-item" onclick="showPage('food')">食品饮料</div>
-                    <div class="industry-item" onclick="showPage('medical')">医疗用品</div>
-                    <div class="industry-item" onclick="showPage('auto')">汽车配件</div>
-                    <div class="industry-item" onclick="showPage('machinery')">机械设备</div>
-                    <div class="industry-item" onclick="showPage('textile')">纺织服装</div>
-                    <div class="industry-item" onclick="showPage('sports')">运动器材</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 全球仓储区域 -->
-        <section class="warehouses">
-            <div class="container">
-                <div class="section-title">
-                    <h2>全球仓储布局</h2>
-                    <p>智能仓储网络保障全球物流效率</p>
-                </div>
-                <table class="warehouse-table">
-                    <thead>
-                        <tr>
-                            <th>仓库地点</th>
-                            <th>面积</th>
-                            <th>特色功能</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr onclick="showPage('shenzhen-warehouse')">
-                            <td>中国深圳</td>
-                            <td>1.3万㎡</td>
-                            <td>AGV机器人分拣，恒温存储</td>
-                        </tr>
-                        <tr onclick="showPage('guangzhou-warehouse')">
-                            <td>中国广州</td>
-                            <td>1.8万㎡</td>
-                            <td>AGV机器人分拣，恒温存储</td>
-                        </tr>
-                        <tr onclick="showPage('sydney-warehouse')">
-                            <td>澳大利亚悉尼</td>
-                            <td>3.5万㎡</td>
-                            <td>AGV机器人分拣，恒温存储</td>
-                        </tr>
-                        <tr onclick="showPage('melbourne-warehouse')">
-                            <td>澳大利亚墨尔本</td>
-                            <td>2.8万㎡</td>
-                            <td>跨境电商专用，48小时全澳达</td>
-                        </tr>
-                        <tr onclick="showPage('brisbane-warehouse')">
-                            <td>澳大利亚布里斯班</td>
-                            <td>1.2万㎡</td>
-                            <td>家居家装产品专业仓</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- 合作伙伴区域 -->
-        <section class="partners">
-            <div class="container">
-                <div class="section-title">
-                    <h2>战略合作伙伴</h2>
-                    <p>与全球知名品牌建立长期合作关系</p>
-                </div>
-                <div class="partners-grid">
-                    <div class="partner-item" onclick="showPage('huawei')">华为技术（澳洲）</div>
-                    <div class="partner-item" onclick="showPage('swisse')">Swisse维生素</div>
-                    <div class="partner-item" onclick="showPage('haier')">海尔集团</div>
-                    <div class="partner-item" onclick="showPage('midea')">美的电器</div>
-                    <div class="partner-item" onclick="showPage('geli')">格力空调</div>
-                    <div class="partner-item" onclick="showPage('lenovo')">联想集团</div>
-                    <div class="partner-item" onclick="showPage('xiaomi')">小米科技</div>
-                    <div class="partner-item" onclick="showPage('cofco')">中粮集团</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 行动号召区域 -->
-        <section class="cta">
-            <div class="container">
-                <h2>准备好优化您的中澳物流链了吗？</h2>
-                <p>立即联系我们，获取定制化物流解决方案</p>
-                <a href="#" class="cta-button" onclick="showPage('contact'); return false;">联系我们</a>
-            </div>
-        </section>
-    </div>
-
-    <!-- 关于我们页面 -->
-    <div id="about" class="page-content">
-        <div class="container">
-            <h2>关于利必达国际物流</h2>
-            <p>广东省利必达国际物流有限公司成立于2013年，是中国商务部首批授予一级国际货运代理资质的企业。作为澳大利亚贸易委员会（Austrade）在华物流类战略合作伙伴，利必达深耕中澳经贸走廊12年，创新打造"物流+贸易"双轮驱动的全链路服务体系。</p>
-            <p>公司年操作中澳航线集装箱量占该通道总货量的15%，服务客户包括华为澳洲、Swisse维生素等300余家知名企业，并获评WCA全球货运联盟核心成员、ISO9001:2015认证等权威资质。</p>
-            <p><a href="#" class="cta-button" onclick="showPage('home'); return false;">返回首页</a></p>
+            </section>
         </div>
-    </div>
 
-    <!-- 服务项目页面 -->
-    <div id="services" class="page-content">
-        <div class="container">
-            <h2>我们的服务项目</h2>
-            <p>利必达提供全方位的国际物流服务，包括海运、空运、仓储和贸易解决方案。</p>
-            <p><a href="#" class="cta-button" onclick="showPage('home'); return false;">返回首页</a></p>
-        </div>
-    </div>
-
-    <!-- 其他页面内容类似，这里省略详细代码 -->
-    <div id="industries" class="page-content">
-        <div class="container">
-            <h2>行业解决方案</h2>
-            <p>我们为各行业提供专业的物流解决方案。</p>
-            <p><a href="#" class="cta-button" onclick="showPage('home'); return false;">返回首页</a></p>
-        </div>
-    </div>
-
-    <div id="network" class="page-content">
-        <div class="container">
-            <h2>全球网络</h2>
-            <p>我们在全球拥有广泛的物流网络。</p>
-            <p><a href="#" class="cta-button" onclick="showPage('home'); return false;">返回首页</a></p>
-        </div>
-    </div>
-
-    <div id="contact" class="page-content">
-        <div class="container">
-            <h2>联系我们</h2>
-            <p>欢迎联系利必达国际物流，我们将为您提供专业的物流咨询服务。</p>
-            <p><a href="#" class="cta-button" onclick="showPage('home'); return false;">返回首页</a></p>
-        </div>
-    </div>
-
-    <!-- 页脚 -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h3>利必达国际物流</h3>
-                    <p>中澳贸易全链路服务领航者，自2013年起为客户提供专业物流解决方案。</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-weixin"></i></a>
-                        <a href="#"><i class="fab fa-weibo"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+        <section id="about" class="sub-page hidden pt-32 pb-24 fade-in">
+             <div class="max-w-6xl mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                    <div>
+                        <h1 class="text-4xl font-bold text-[#1e3a8a] mb-6">关于利必达 (Liberate)</h1>
+                        <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                            广东省利必达国际物流有限公司（以下简称“利必达”）成立于2013年，是中国商务部首批授予一级国际货运代理资质的企业。作为澳大利亚贸易委员会 (Austrade) 在华物流类战略合作伙伴，利必达深耕中澳经贸走廊12年。
+                        </p>
+                        <p class="text-lg text-slate-600 leading-relaxed">
+                            公司年操作中澳航线集装箱量占该通道总货量的15%，并获评WCA全球货运联盟核心成员、ISO9001:2015认证等权威资质。
+                        </p>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="rounded-2xl shadow-xl w-full">
                     </div>
                 </div>
-                <div class="footer-column">
-                    <h3>服务项目</h3>
-                    <ul>
-                        <li><a href="#" onclick="showPage('ocean-freight'); return false;">海运专线</a></li>
-                        <li><a href="#" onclick="showPage('air-freight'); return false;">空运专线</a></li>
-                        <li><a href="#" onclick="showPage('warehousing'); return false;">全球仓储</a></li>
-                        <li><a href="#" onclick="showPage('customs'); return false;">清关服务</a></li>
-                        <li><a href="#" onclick="showPage('trade-solutions'); return false;">贸易解决方案</a></li>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 mb-12">
+                    <h2 class="text-2xl font-bold text-[#1e3a8a] mb-6">全球智能仓储布局</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="p-6 bg-slate-50 rounded-xl">
+                            <h3 class="font-bold text-lg mb-2">澳大利亚悉尼</h3>
+                            <p class="text-3xl font-bold text-blue-600 mb-1">3.5万㎡</p>
+                            <p class="text-xs text-slate-500">AGV机器人分拣, 恒温存储</p>
+                        </div>
+                        <div class="p-6 bg-slate-50 rounded-xl">
+                            <h3 class="font-bold text-lg mb-2">澳大利亚墨尔本</h3>
+                            <p class="text-3xl font-bold text-blue-600 mb-1">2.8万㎡</p>
+                            <p class="text-xs text-slate-500">跨境电商专用, 48小时全澳达</p>
+                        </div>
+                        <div class="p-6 bg-slate-50 rounded-xl">
+                            <h3 class="font-bold text-lg mb-2">美国洛杉矶</h3>
+                            <p class="text-3xl font-bold text-blue-600 mb-1">2.2万㎡</p>
+                            <p class="text-xs text-slate-500">直供销售平台</p>
+                        </div>
+                        <div class="p-6 bg-slate-50 rounded-xl">
+                            <h3 class="font-bold text-lg mb-2">中国广州/深圳</h3>
+                            <p class="text-3xl font-bold text-blue-600 mb-1">3.1万㎡</p>
+                            <p class="text-xs text-slate-500">合计面积, AGV机器人分拣</p>
+                        </div>
+                        <div class="p-6 bg-slate-50 rounded-xl">
+                            <h3 class="font-bold text-lg mb-2">德国汉堡</h3>
+                            <p class="text-3xl font-bold text-blue-600 mb-1">1.8万㎡</p>
+                            <p class="text-xs text-slate-500">欧盟合规仓</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200">
+                    <h2 class="text-xl font-bold text-[#1e3a8a] mb-6">服务客户</h2>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-white px-4 py-2 rounded-full border border-slate-200 text-sm">华为技术</span>
+                        <span class="bg-white px-4 py-2 rounded-full border border-slate-200 text-sm">Swisse 维生素</span>
+                        <span class="bg-white px-4 py-2 rounded-full border border-slate-200 text-sm">海尔集团</span>
+                        <span class="bg-white px-4 py-2 rounded-full border border-slate-200 text-sm">美的电器</span>
+                        <span class="bg-white px-4 py-2 rounded-full border border-slate-200 text-sm">格力空调</span>
+                        <span class="bg-white px-4 py-2 rounded-full border border-slate-200 text-sm">联想集团</span>
+                        <span class="bg-white px-4 py-2 rounded-full border border-slate-200 text-sm">小米科技</span>
+                        <span class="bg-white px-4 py-2 rounded-full border border-slate-200 text-sm">安踏体育</span>
+                        <span class="bg-white px-4 py-2 rounded-full border border-slate-200 text-sm">蓝月亮</span>
+                        <span class="bg-white px-4 py-2 rounded-full border border-slate-200 text-sm">完美日记</span>
+                        <span class="bg-white px-4 py-2 rounded-full border border-slate-200 text-sm">三只松鼠</span>
+                        <span class="bg-white px-4 py-2 rounded-full border border-slate-200 text-sm">大疆创新</span>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <section id="sea" class="sub-page hidden pt-32 pb-24 fade-in">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center mb-12">
+                     <h1 class="text-4xl font-bold text-[#1e3a8a] mb-4">海运专线服务</h1>
+                     <p class="text-slate-500">Global Sea Freight Network</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 mb-8">
+                    <h2 class="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                        <i data-lucide="map" class="w-5 h-5 text-blue-600"></i> 主力航线与时效
+                    </h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left data-table">
+                            <thead>
+                                <tr>
+                                    <th class="p-4 rounded-tl-lg">航线</th>
+                                    <th class="p-4">始发港/目的港</th>
+                                    <th class="p-4">利必达时效</th>
+                                    <th class="p-4 rounded-tr-lg">班次密度</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="p-4 font-bold text-slate-700">中澳快线</td>
+                                    <td class="p-4">深圳蛇口/广州南沙 → 悉尼/墨尔本</td>
+                                    <td class="p-4 text-green-600 font-bold">7天直达</td>
+                                    <td class="p-4">每周5班固定班轮</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold text-slate-700">中美航线</td>
+                                    <td class="p-4">上海/青岛 → 洛杉矶/长滩</td>
+                                    <td class="p-4 text-blue-600 font-bold">12天到港</td>
+                                    <td class="p-4">每周5班</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold text-slate-700">中欧航线</td>
+                                    <td class="p-4">宁波/厦门 → 鹿特丹/汉堡</td>
+                                    <td class="p-4 text-blue-600 font-bold">18天直达</td>
+                                    <td class="p-4">每周3班</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold text-slate-700">东南亚线</td>
+                                    <td class="p-4">广州 → 新加坡/巴生港</td>
+                                    <td class="p-4 text-blue-600 font-bold">5天到港</td>
+                                    <td class="p-4">每日航班</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                        <h3 class="font-bold text-lg mb-4 text-[#1e3a8a] flex items-center gap-2">
+                            <i data-lucide="container" class="w-5 h-5"></i> 专业化集装箱服务
+                        </h3>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li><strong class="text-slate-800">标准柜型:</strong> 20GP / 40GP / 40HQ</li>
+                            <li><strong class="text-slate-800">45'超长柜:</strong> 适用家具、建材运输</li>
+                            <li><strong class="text-slate-800">开顶柜 (Open Top):</strong> 适用工程机械</li>
+                            <li><strong class="text-slate-800">框架柜 (Flat Rack):</strong> 适用大型设备</li>
+                            <li><strong class="text-slate-800">冷藏柜 (Reefer):</strong> -25℃至+25℃温区</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                        <h3 class="font-bold text-lg mb-4 text-[#1e3a8a] flex items-center gap-2">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i> 核心竞争优势
+                        </h3>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> 澳洲港口 VIP 泊位优先靠泊</li>
+                            <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> 抵港后18小时内完成卸船</li>
+                            <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> 专属海关通道，清关时效快50%</li>
+                            <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> 中澳每周3班直拼 (LCL)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="air" class="sub-page hidden pt-32 pb-24 fade-in">
+             <div class="max-w-5xl mx-auto px-6">
+                 <div class="text-center mb-12">
+                     <h1 class="text-4xl font-bold text-[#1e3a8a] mb-4">空运专线服务</h1>
+                     <p class="text-slate-500">High-Speed Air Freight Solutions</p>
+                </div>
+
+                <div class="bg-[#1e3a8a] rounded-3xl p-8 text-white mb-12 shadow-xl">
+                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-blue-400/30">
+                        <div class="p-4">
+                            <p class="text-blue-200 text-xs uppercase mb-2">中澳门到门</p>
+                            <p class="text-3xl font-bold">5-8 工作日</p>
+                            <p class="text-xs mt-2 opacity-80"></p>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-blue-200 text-xs uppercase mb-2">清关速度</p>
+                            <p class="text-3xl font-bold">&lt; 4 小时</p>
+                            <p class="text-xs mt-2 opacity-80">澳洲机场VIP通道</p>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-blue-200 text-xs uppercase mb-2">航司合作</p>
+                            <p class="text-3xl font-bold">CZ / CX / Qantas</p>
+                            <p class="text-xs mt-2 opacity-80">南航、国泰主力仓位</p>
+                        </div>
+                     </div>
+                 </div>
+
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                     <div class="bg-white p-8 rounded-2xl border border-slate-200">
+                         <h3 class="font-bold text-lg mb-4 text-[#1e3a8a]">旺季包机解决方案</h3>
+                         <ul class="space-y-4 text-sm text-slate-600">
+                             <li><strong>航线:</strong> 广州 → 悉尼/墨尔本/布里斯班</li>
+                             <li><strong>机型:</strong> B747 全货机，单程最大载重200吨</li>
+                             <li><strong>频次:</strong> 旺季每周2班</li>
+                             <li><strong>适用:</strong> 电商促销季补货、高价值电子产品</li>
+                         </ul>
+                     </div>
+                     <div class="bg-white p-8 rounded-2xl border border-slate-200">
+                        <h3 class="font-bold text-lg mb-4 text-[#1e3a8a]">特殊货物处理能力</h3>
+                        <ul class="space-y-4 text-sm text-slate-600">
+                            <li><strong>带电产品:</strong> UN38.3 认证电池专项运输，独立防火仓储</li>
+                            <li><strong>医药冷链:</strong> 2-8℃温控箱 + 实时温度监控</li>
+                            <li><strong>资质认证:</strong> 澳洲治疗商品管理局 (TGA) 备案资质</li>
+                            <li><strong>液体/化妆品:</strong> IATA 合规包装方案</li>
+                        </ul>
+                    </div>
+                 </div>
+             </div>
+        </section>
+
+        <section id="contact" class="sub-page hidden pt-32 pb-24 fade-in">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center mb-12">
+                     <h1 class="text-4xl font-bold text-[#1e3a8a] mb-4">联系我们</h1>
+                     <p class="text-slate-500">Contact Us</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
+                        <h3 class="text-xl font-bold mb-6 text-slate-800">发送询价</h3>
+                        <form class="space-y-4" onsubmit="event.preventDefault(); alert('提交成功! 我们会尽快联系您。');">
+                            <div class="grid grid-cols-2 gap-4">
+                                <input type="text" placeholder="您的姓名" class="w-full border border-slate-200 p-3 rounded-lg text-sm bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <input type="text" placeholder="联系电话" class="w-full border border-slate-200 p-3 rounded-lg text-sm bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <input type="text" placeholder="公司名称" class="w-full border border-slate-200 p-3 rounded-lg text-sm bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <textarea rows="4" placeholder="请简述您的物流需求..." class="w-full border border-slate-200 p-3 rounded-lg text-sm bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                            <button class="w-full bg-[#1e3a8a] text-white py-3 rounded-lg hover:bg-blue-800 transition-colors font-medium shadow-lg shadow-blue-900/20">提交需求</button>
+                        </form>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="font-bold text-xl text-slate-800 mb-6">全球分部</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                    <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 shrink-0">
+                                        <i data-lucide="map-pin" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-slate-700">中国总部</p>
+                                        <p class="text-slate-500 text-sm">地址: 广东省佛山市</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                    <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 shrink-0">
+                                        <i data-lucide="globe" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-slate-700">澳洲分部</p>
+                                        <p class="text-slate-500 text-sm">Sydney / Melbourne / Brisbane</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                    <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 shrink-0">
+                                        <i data-lucide="building" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-slate-700">香港分部</p>
+                                        <p class="text-slate-500 text-sm">Hong Kong SAR</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-600 rounded-2xl p-6 text-white">
+                            <h4 class="font-bold mb-2">商务合作</h4>
+                            <p class="text-sm opacity-90 mb-1">客服热线: +86 757 8888 8888</p>
+                            <p class="text-sm opacity-90">电子邮箱: info@liberate.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#1e3a8a] text-white/80 py-16 text-sm relative z-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-base flex items-center gap-2">
+                        <i data-lucide="globe" class="w-5 h-5"></i> 利必达国际物流
+                    </h4>
+                    <p class="text-xs leading-relaxed opacity-80 mb-4">
+                        中澳贸易全链路服务领航者 (2013-2025)。<br>
+                        专注、专业、专心，为您连接全球商机。
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-base">服务项目</h4>
+                    <ul class="space-y-3 text-xs opacity-80">
+                        <li class="hover:text-white cursor-pointer transition-colors" onclick="navigate('sea')">中澳双向全链路服务</li>
+                        <li class="hover:text-white cursor-pointer transition-colors" onclick="navigate('air')">企业跨境物流</li>
+                        <li class="hover:text-white cursor-pointer transition-colors" onclick="navigate('about')">个人跨境集运</li>
+                        <li class="hover:text-white cursor-pointer transition-colors">清关服务</li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h3>全球网点</h3>
-                    <ul>
-                        <li><a href="#" onclick="showPage('china-office'); return false;">中国总部</a></li>
-                        <li><a href="#" onclick="showPage('australia-office'); return false;">澳大利亚分公司</a></li>
-                        <li><a href="#" onclick="showPage('hongkong-office'); return false;">香港分公司</a></li>
-                        <li><a href="#" onclick="showPage('global-network'); return false;">全球网络</a></li>
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-base">全球网点</h4>
+                    <ul class="space-y-3 text-xs opacity-80">
+                        <li>中国总部 (Foshan)</li>
+                        <li>澳大利亚分公司 (Sydney)</li>
+                        <li>香港分公司 (HK)</li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h3>联系我们</h3>
-                    <ul>
-                        <li><i class="fas fa-phone"></i> +86 XXX XXXX XXXX</li>
-                        <li><i class="fas fa-envelope"></i> info@leadpluslogistics.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> 广东省佛山市</li>
-                    </ul>
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-base">订阅资讯</h4>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="您的邮箱" class="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-xs w-full focus:outline-none focus:bg-white/20">
+                        <button class="bg-blue-500 text-white rounded-lg px-3 py-2 text-xs hover:bg-blue-400">订阅</button>
+                    </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2023 广东省利必达国际物流有限公司 版权所有</p>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs opacity-60">
+                <p>2023 广东省利必达国际物流有限公司 版权所有 | WCA ID: 123456</p>
+                <div class="flex gap-4 mt-4 md:mt-0">
+                    <span class="cursor-pointer hover:text-white">隐私政策</span>
+                    <span class="cursor-pointer hover:text-white">服务条款</span>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // 页面切换功能
-        function showPage(pageId) {
-            // 隐藏所有页面
-            document.querySelectorAll('.page-content').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // 显示选中的页面
-            document.getElementById(pageId).classList.add('active');
-            
-            // 滚动到顶部
-            window.scrollTo(0, 0);
-            
-            // 更新导航菜单活动状态
-            document.querySelectorAll('nav a').forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            // 如果是首页，设置首页链接为活动状态
-            if (pageId === 'home') {
-                document.querySelector('nav a').classList.add('active');
-            }
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Toggle Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
         }
-        
-        // 为所有可点击元素添加视觉反馈
-        document.querySelectorAll('[onclick]').forEach(element => {
-            element.style.cursor = 'pointer';
-        });
+
+        // Main Navigation Logic
+        function navigate(pageId) {
+            const header = document.getElementById('main-header');
+            const landingContent = document.getElementById('landing-content');
+            const homeHero = document.getElementById('home-hero');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            // Close mobile menu if open
+            if(!mobileMenu.classList.contains('hidden')) {
+                toggleMobileMenu();
+            }
+
+            if(pageId === 'home') {
+                // Show Home Elements
+                homeHero.classList.remove('hidden');
+                landingContent.classList.remove('hidden');
+                
+                // Hide Sub Pages
+                document.querySelectorAll('.sub-page').forEach(el => el.classList.add('hidden'));
+                
+                // Style Header (Transparent)
+                header.classList.remove('bg-[#1e3a8a]', 'shadow-md');
+                header.classList.add('bg-transparent', 'backdrop-blur-[2px]');
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            // Handle Sub-Pages
+            // Hide Home Elements
+            homeHero.classList.add('hidden');
+            landingContent.classList.add('hidden');
+
+            // Hide all sub-pages first
+            document.querySelectorAll('.sub-page').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('fade-in');
+            });
+
+            // Show Target Page
+            const target = document.getElementById(pageId);
+            if(target) {
+                target.classList.remove('hidden');
+                // Trigger animation
+                void target.offsetWidth; 
+                target.classList.add('fade-in');
+            }
+            
+            // Style Header (Solid Blue for sub-pages)
+            header.classList.remove('bg-transparent', 'backdrop-blur-[2px]');
+            header.classList.add('bg-[#1e3a8a]', 'shadow-md');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
